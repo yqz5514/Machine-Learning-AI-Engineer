@@ -19,14 +19,16 @@ Before developing an ML system, we must **understand business needs**, define **
 ## 📌 1. Business vs. ML Objectives
 ### **Aligning ML Metrics with Business Goals**
 - **Data scientists** focus on ML metrics (e.g., accuracy, F1 score, latency).
-- **Businesses** focus on **profitability, user engagement, and cost savings**.
+- **Businesses** focus on drive **profitability, either in direct way or indirect way like user engagement, user satisfication,and cost savings**.
 
 **Example**:  
 - A **0.2% improvement in click-through rate (CTR) for a recommender system** can **increase e-commerce revenue by millions**.
 - Netflix uses **take-rate** (quality plays / total recommendations) as an ML metric linked to **streaming hours and subscription rates**.
 
 📌 **Key Takeaway**:  
-For an ML project to succeed in a company, its **performance must directly impact business metrics**.
+For an ML project to succeed in a company, its **performance better directly impact business metrics**.
+
+ML metrics 的结果如何影响busines metrics是可以通过统计实验来验证的，比如AB testing，但是在ML的结果只是用来做决定程序中的一环时，很难用任何统计方法验证出ML结果对业务的影响
 
 ---
 
@@ -43,7 +45,7 @@ A well-designed ML system must meet four key requirements:
 ---
 
 ### **2️⃣ Scalability**
-An ML system must scale in three ways:
+An ML system can scale in three ways:
 1. **Model Complexity**:  
    - E.g., moving from a logistic regression to a **100M parameter neural network**.
 2. **Traffic Volume**:  
@@ -53,8 +55,11 @@ An ML system must scale in three ways:
 
 📌 **Scalability Strategies**:
 - **Auto-scaling infrastructure** (e.g., Kubernetes, AWS Auto Scaling).
-- **Efficient model management** (versioning, monitoring).
+- **Artifacts model management** (versioning, monitoring).
 - **Cloud resource optimization** to **minimize operational costs**.
+- **resource scaling** : up scale, down scale
+
+
 
 ---
 
@@ -111,22 +116,34 @@ Developing an ML system **is never a one-off task**—it’s an **iterative cycl
 📌 **Key Takeaway**:  
 ML system development is **cyclical**—monitoring, updating, and improving models **never stops**.
 
+![image](https://github.com/user-attachments/assets/38c550db-9fa9-4b80-af11-597446f74b5f)
+
+
 ---
 
 ## 📌 4. Framing ML Problems
 ML problems must be well-defined **before choosing an algorithm**:
 - **Inputs & outputs** must be clear.
 - **The problem must be ML-solvable** (not all problems need ML).
+- **Objective function(loss function)**
 
 📌 **Example**:
 - **Customer Support AI**:  
   - Instead of using ML for **general speed improvement**, frame it as a **classification problem**:
-  - **Input**: Customer query → **Output**: Route to the correct department.
+  - **Input**: Customer query → **Output**: Route to the correct department. -> **loss function**: cross entropy
 
 ---
 
 ## 📌 5. Types of ML Tasks
+
+### **the type of output dictates the task type of ML problem**
+
 ### **Classification vs. Regression**
+
+![image](https://github.com/user-attachments/assets/ea2aef8b-2658-49fa-9ca4-0314035a5d5d)
+
+
+
 | **Task Type** | **Example** |
 |--------------|------------|
 | **Classification** | Email spam detection (Spam / Not Spam) |
@@ -151,10 +168,12 @@ If an ML system must **balance multiple goals**, separate objectives into **inde
 📌 **Example: AI News Feed Ranking**
 1. **Quality Model** → Filters **spam/misinformation**.
 2. **Engagement Model** → Prioritizes **high-click-rate posts**.
-3. **Final Ranking** = `α * quality_score + β * engagement_score`
+3. **Final Ranking** = `α * quality_score + β * engagement_score`*
+   
+   * But add two loss function together will cause retrain problem. so the better way is to train different model for each loss function.
 
 🚀 **Advantage**:  
-Tuning `α` & `β` allows **adjustment without retraining** models.
+Seperate model allows **adjustment without retraining** models, and **easier to maintenance**.
 
 ---
 
