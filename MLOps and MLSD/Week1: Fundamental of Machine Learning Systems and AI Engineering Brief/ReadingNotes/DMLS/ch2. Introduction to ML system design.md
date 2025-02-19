@@ -198,6 +198,32 @@ Seperate model allows **adjustment without retraining** models, and **easier to 
 3️⃣ **Balancing multiple objectives in ML (e.g., quality vs. engagement) is best achieved through separate models rather than optimizing a single loss function.**  
 
 ---
+📌 If an Interviewer Asks... (Based on Chapter 2 of Designing Machine Learning Systems)
+❓ Q1: How do you ensure that an ML system aligns with business objectives?
+✅ Answer:
+
+ML systems should directly impact key business metrics such as revenue, engagement, or operational efficiency.
+Define ML-specific objectives (e.g., accuracy, F1-score) and map them to business KPIs (e.g., click-through rate, cost savings).
+Example: In an e-commerce recommendation system, optimizing CTR directly increases sales volume, making CTR a business-aligned ML metric.
+❓ Q2: What are the key challenges when transitioning an ML model from research to production?
+✅ Answer:
+
+Scalability: Handling increased traffic, adapting models for real-time inference.
+Reliability: Ensuring consistent performance despite data drift & system failures.
+Maintainability: Implementing version control, monitoring, and automated retraining to keep models updated.
+Multiple Stakeholders: Balancing different requirements from ML engineers, product teams, infrastructure teams, and business leaders.
+🚀 Example:
+
+Research models prioritize SOTA accuracy, but in production, a lower-latency model may be preferred to improve user experience.
+❓ Q3: How would you design an ML system that balances multiple conflicting objectives?
+✅ Answer:
+
+Decouple objectives into separate models, then combine their outputs using a weighted ranking system.
+Example: AI-powered news feed ranking:
+Model A → Prioritizes high-quality content (low spam, verified sources).
+Model B → Optimizes for user engagement (high click-through rate).
+Final Score = α * quality_score + β * engagement_score, where α and β are tunable parameters.
+This approach allows flexibility in optimizing different trade-offs without retraining models.
 
 ## 📌 Next Steps 🚀
 ✅ **Deep dive into data engineering (next chapter focus).**  
