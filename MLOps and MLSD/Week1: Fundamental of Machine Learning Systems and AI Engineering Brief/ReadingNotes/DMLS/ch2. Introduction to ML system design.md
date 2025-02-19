@@ -198,7 +198,8 @@ Seperate model allows **adjustment without retraining** models, and **easier to 
 3️⃣ **Balancing multiple objectives in ML (e.g., quality vs. engagement) is best achieved through separate models rather than optimizing a single loss function.**  
 
 ---
-📌 If an Interviewer Asks... (Based on Chapter 2 of Designing Machine Learning Systems)
+
+## 📌 If an Interviewer Asks... (Based on Chapter 2 of Designing Machine Learning Systems)
 ❓ Q1: How do you ensure that an ML system aligns with business objectives?
 ✅ Answer:
 
@@ -224,6 +225,7 @@ Model A → Prioritizes high-quality content (low spam, verified sources).
 Model B → Optimizes for user engagement (high click-through rate).
 Final Score = α * quality_score + β * engagement_score, where α and β are tunable parameters.
 This approach allows flexibility in optimizing different trade-offs without retraining models.
+
 
 ## 📌 Next Steps 🚀
 ✅ **Deep dive into data engineering (next chapter focus).**  
