@@ -198,8 +198,8 @@ if __name__ == "__main__":
 
 
 
-    ## single linked list
-    class MyLinkedList2:
+## single linked list
+class MyLinkedList2:
 
     class Node:
         def __init__(self, val):
