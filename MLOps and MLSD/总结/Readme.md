@@ -76,7 +76,13 @@
 │   │   │   ├── 并行推理（Parallel Inference）
 │   │   │   ├── Load Balancing（负载均衡）
 │   │   ├── 真实案例：Google 语音助手的低延迟优化
-│   
+│   │   │ 
+│   │   ├──系统优化 Trade-off（权衡优化）
+│   │   │   ├── 计算效率 vs 预测精度（Performance vs Accuracy）
+│   │   │   ├── 低延迟 vs 高吞吐量（Latency vs Throughput）
+│   │   │   ├── 资源消耗 vs 可扩展性（Cost vs Scalability）
+│   │   │   ├── 真实案例：推荐系统如何在精准度 & 计算成本之间做取舍？
+│   │
 ├── 2️⃣ AI Engineering（AI 工程）
 │   ├── 传统 ML vs AI Engineering
 │   │   ├── 传统 ML 关注模型训练（Train from Scratch）
@@ -114,6 +120,12 @@
 │   │   │   ├── Token Usage Reduction
 │   │   │   ├── Edge AI & On-Device Models
 │   │
+│   ├── AI 真实应用案例（Industry Applications）
+│   │   ├── AI 搜索引擎（Google Search + RAG）
+│   │   ├── AI 辅助编程（GitHub Copilot, ChatGPT Code Interpreter）
+│   │   ├── AI 个性化推荐（Netflix, Spotify, TikTok）
+│   │   ├── AI 医疗（AI 影像分析, 疾病预测）
+│   │   ├── AI 生成式设计（Midjourney, Adobe Firefly）
 │   ├── AI 应用落地案例
 │   │   ├── 推荐系统（YouTube, TikTok）
 │   │   ├── AI 搜索（Google, Bing, Perplexity AI）
