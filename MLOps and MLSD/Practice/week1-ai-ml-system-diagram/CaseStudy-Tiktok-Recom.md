@@ -1,7 +1,6 @@
 ---
-High Level view of Tiktok's Architecture
+High Level view of TikTok Recommendation System Architecture
 ```text
-TikTok Recommendation System
 ├── User Interaction Data Collection
 │   ├── Tracks engagement: likes, shares, comments, watch time.
 │   ├── Logs user metadata: device, location, preferences.
