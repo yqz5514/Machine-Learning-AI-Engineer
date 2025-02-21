@@ -1,3 +1,142 @@
-1. 对于重要章节进行自我总结，在交给GPT优化，慢慢培养结构化总结能力。
-2. 每两天或三天可以根据总结的笔记，交给GPT生成一个过去所学内容如何帮到我实现XXX目标。
-3. 每周进行一次大总结，总结过去一周的计划执行结果，学习内容总结（blogs），做的好的部分？不好的部分？如何优化？
+## AI & ML Engineering knowledge Tree (to be updated weekly)
+
+├── 1️⃣ ML System Design （机器学习系统设计）
+│   │
+│   ├──what is ML?
+│   │   ├──machine can learn the complex patttern from exist data, 
+│   │   │   and use that pattern to make prediction on unseen data
+│   │
+│   ├──what are ML suit for(or good at)?
+│   │   ├──capability of learning(if no pattern exist, no need for ML)
+│   │   ├──complex pattern 
+│   │   ├──Existing Data (data is avaliable or it's possible to collect)
+│   │   ├──Prediction (t’s a predictive problem, estimated values.)
+│   │   ├──unsenn data (share similar distribution with exist data)
+│   │   ├──more details 
+│   │   │   ├──the cost of wrong prediction is cheap (need trade off)
+│   │   │   ├──repetitive
+│   │   │   ├──at scale
+│   │   │   ├──patterns are constantly changing
+│   │
+│   ├──When do not use ML?
+│   │   ├──ML 解决方案不符合伦理道德（例如 AI 招聘系统可能带有偏见）。
+│   │   ├──更简单的传统方法足够（不需要复杂的 ML 方案）。
+│   │   ├──问题可以拆分 → 例如，不能构建一个全自动 AI 客服，但可以用 ML 预测用户是否FAQ 里找到答案，然后引导他们联系人工客服。
+│   │
+│   ├── Research vs Production（Research vs Production）
+│   │   ├── Goal：SOTA&high performance VS business metrics driven,balancing speed, interpretability, and cost
+│   │   ├── Data：Static Vs onstantly changing,bias,unstrutued
+│   │   ├── Computational Priority：Throughput vs Latency
+│   │   ├── Fairness & Bias: not focus vs Must
+│   │   ├── Interpretability: not focus vs Must
+│   │   ├── 真实案例：Netflix 推荐系统优化
+│   │
+│   ├── 机器学习系统流程框架(ch2)
+│   │   ├── Business objectives (Aligning ML Metrics with Business Goals)
+│   │   ├── Data stack（Data Pipeline）
+│   │   ├── Infrastructure
+│   │   ├── Deployment
+│   │   ├── Monitoring & Feedback Loop）
+│   │
+│   ├── Framing ML problems (ch2)
+│   │   ├── Input 
+│   │   ├── Output -- output type dictates task type of ML problem (classification, regression)
+│   │   ├── Objective/loss function
+│   │
+│   ├── The Iterative ML Development Process(cyclical) (ch2)
+│   │   ├── Project Scoping
+│   │   ├── Data Engineering
+│   │   ├── ML Model Development
+│   │   ├── Deployment
+│   │   ├── Monitoring & Continuous Learning
+│   │   ├── Business Impact Analysis
+│   │
+│   ├── ML System core system requirments(ch2):
+│   │   ├── Reliability (strong monitoring, human in the loop sys)
+│   │   ├── Scalability
+│   │   ├── Maintainability
+│   │   ├── Adaptability
+│   │
+│   ├── 机器学习模型的可维护性（Maintainability）
+│   │   ├── 模型版本管理（Model Versioning）
+│   │   ├── 可解释性（Interpretability & Explainability
+│   │   ├── 监管 & 合规（Regulatory Compliance）
+│   │
+│   ├── 机器学习系统优化(ch1.2)
+│   │   ├── 低延迟推理（Latency Optimization）（what is latency?how to analyze and measure?每个方法的优缺点？适用场景？）
+│   │   │   ├── Batch Processing（批量推理）-- commonly used in  large distributed ML system
+│   │   │   ├── Quantization（模型量化）
+│   │   │   ├── Distillation（模型蒸馏）
+│   │   │   ├── Caching Strategies（缓存策略）
+│   │   ├── 高吞吐量优化（Throughput Optimization）(what is throughout? how to analyze and measure)
+│   │   │   ├── 并行推理（Parallel Inference）
+│   │   │   ├── Load Balancing（负载均衡）
+│   │   ├── 真实案例：Google 语音助手的低延迟优化
+│   
+├── 2️⃣ AI Engineering（AI 工程）
+│   ├── 传统 ML vs AI Engineering
+│   │   ├── 传统 ML 关注模型训练（Train from Scratch）
+│   │   ├── AI Engineering 关注模型适配（Adapt Pre-trained Models）
+│   │   ├── AI 开发者技能：Prompt Engineering, RAG, Fine-Tuning
+│   │
+│   ├── AI 开发三大层次 （ch1.4）
+│   │   ├── 应用层（Application Layer）
+│   │   │   ├── LLM API 开发（LangChain, OpenAI API）
+│   │   │   ├── AI 应用（AI Chatbot, 智能搜索, 生成式 AI）
+│   │   │   ├── Prompt Engineering（提示工程
+│   │   │   ├── Evaluating AI Models
+│   │   ├── 模型层（Model Development Layer）
+│   │   │   ├── Dataset engineering 
+│   │   │   ├── Fine-Tuning（微调 & LoRA）& optimization
+│   │   │   ├── pre-training vs post-training
+│   │   │   ├── Retrieval-Augmented Generation（RAG）
+│   │   │   ├── Inference Optimization & Scalability
+│   │   ├── 基础设施层（Infrastructure Layer）
+│   │   │   ├── MLOps（MLflow, Weights & Biases）
+│   │   │   ├── 部署优化（Kubernetes, TensorRT, ONNX）
+│   │   │   ├── AI 监控（Evidently AI, Drift Detection）
+│   │
+│   ├── LLM 生态系统
+│   │   ├── LLM vs Foundation Models
+│   │   ├── 主要 LLM 提供商（OpenAI, Google, Anthropic）
+│   │   ├── LLM 适配技术（Prompt Engineering vs Fine-Tuning）
+│   │   ├── 企业 LLM 选型：API vs 自研模型
+│   │
+│   ├── AI 生产环境中的优化策略
+│   │   ├── 部署优化（Deploying LLMs at Scale）
+│   │   │   ├── Serverless vs GPU Deployment
+│   │   │   ├── API Gateway 设计
+│   │   ├── 成本优化（Cost Optimization）
+│   │   │   ├── Token Usage Reduction
+│   │   │   ├── Edge AI & On-Device Models
+│   │
+│   ├── AI 应用落地案例
+│   │   ├── 推荐系统（YouTube, TikTok）
+│   │   ├── AI 搜索（Google, Bing, Perplexity AI）
+│   │   ├── AI 写作工具（ChatGPT, Jasper, Grammarly）
+│
+├── 3️⃣ MLOps（机器学习运维）
+│   ├── MLOps 生命周期（MLOps Lifecycle）
+│   │   ├── 数据版本管理（DVC, Feature Store）
+│   │   ├── 模型监控（Evidently AI, Prometheus）
+│   │   ├── 模型 CI/CD（MLflow, Vertex AI, AWS SageMaker）
+│   │
+│   ├── MLOps 优化策略
+│   │   ├── 灰度发布 & A/B 测试
+│   │   ├── 自动化数据标注 & 训练
+│   │   ├── 迁移学习（Transfer Learning in Production）
+│   │
+│   ├── 真实案例
+│   │   ├── 如何优化 Google Search AI 生产环境
+│   │   ├── Facebook 计算广告 AI Pipeline
+│
+└── 4️⃣ AI & ML 面试准备
+    ├── 机器学习系统设计（ML System Design Interviews）
+    │   ├── AI 生产环境架构设计
+    │   ├── 模型部署优化（LLM API, Vector Search）
+    │   ├── 数据管道设计（Data Pipelines）
+    ├── AI 工程师面试技巧（AI Engineering Interviews）
+    │   ├── 代码面试（LeetCode, System Design）
+    │   ├── LLM 相关问题（Prompt Engineering, RAG）
+    │   ├── AI 生产落地问题（如何优化 AI 应用的延迟？）
+
