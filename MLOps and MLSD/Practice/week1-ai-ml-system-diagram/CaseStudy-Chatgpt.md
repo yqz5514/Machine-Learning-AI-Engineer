@@ -1,5 +1,5 @@
 ---
-## ChatGPT System Architecture
+ChatGPT System Architecture
 ```text
 ├── User Query & Input Processing
 │   ├── Tokenization (Byte Pair Encoding)
