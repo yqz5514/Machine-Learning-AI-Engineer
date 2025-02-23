@@ -34,3 +34,14 @@
 
 ```
 ---
+1. Data Preparation Phase: Collect and preprocess data from various sources, then generate vector embeddings to represent the information in a numerical format suitable for machine learning models.
+
+2. Storage Phase: Store these embeddings in a vector database for quick similarity searches and keep the original documents in a document storage system.
+
+3. Retrieval Phase: When a user submits a query, convert it into a vector, perform a similarity search in the vector database to find relevant embeddings, and retrieve the associated documents.
+
+4. Generation Phase: Create a prompt that combines the user's query with the retrieved documents, input this prompt into an LLM to generate a response, and deliver the response back to the user.
+
+- This architecture ensures that the LLM's responses are grounded in up-to-date and contextually relevant information, enhancing accuracy and reducing the likelihood of generating incorrect or "hallucinated" content.
+
+
