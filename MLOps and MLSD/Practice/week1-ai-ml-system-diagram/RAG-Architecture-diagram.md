@@ -1,5 +1,5 @@
----
 ## Retrieval-Augmented Generation (RAG) Architecture
+---
 
 ```text
 ├── Data Preparation Phase
