@@ -1,21 +1,28 @@
-📌 README.md (GitHub Markdown Format)
-md
-Copy
-Edit
+
 # 🧠 Machine Learning Pipeline
 
 This repository contains an **end-to-end ML pipeline** that includes:
-✅ Model Training (**Scikit-Learn + MLflow**)  
-✅ Model Inference (**FastAPI**)  
-✅ CI/CD Automation (**GitHub Actions**)  
-✅ Basic Monitoring (**Prometheus**)  
+#### ✅ Model Training (**Scikit-Learn + MLflow**)  
+#### ✅ Model Inference (**FastAPI**)  
+#### ✅ CI/CD Automation (**GitHub Actions**)  
+#### ✅ Basic Monitoring (**Prometheus**)  
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-ml_pipeline/ │── .github/workflows/ # CI/CD automation │── data/ # Dataset │── model/ # Trained model storage │── logs/ # Log directory │── deployment/ # Deployment files │── test/ # Unit tests │── ml_pipeline_project/ # ML pipeline scripts │── config.yaml # Configuration file │── requirements.txt # Dependencies │── README.md # Documentation
+ml_pipeline/ 
+│── .github/workflows/ #CI/CD automation 
+│── data/ # Dataset 
+│── model/ # Trained model storage 
+│── logs/ # Log directory 
+│── deployment/ # Deployment files 
+│── test/ # Unit tests 
+│── ml_pipeline_project/ # ML pipeline scripts 
+│── config.yaml # Configuration file 
+│── requirements.txt # Dependencies 
+│── README.md # Documentation
 
 ```
 
@@ -45,74 +52,75 @@ Test the trained model locally before deploying:
 ```bash
 python inference.py
 ```
-4️⃣ Start the API for Real-time Predictions
+
+### 4️⃣ Start the API for Real-time Predictions
 Deploy the model using FastAPI:
 
-
+```bash
 python serve.py
+```
 
 Then, test it with cURL:
 
-bash
-Copy
-Edit
+```bash
 curl -X POST "http://127.0.0.1:5000/predict" \
      -H "Content-Type: application/json" \
      -d '{"features": [5.1, 3.5, 1.4, 0.2]}'
+```
+
 Expected Output:
-
-json
-Copy
-Edit
+```code
 {"prediction": 0}
-5️⃣ Enable CI/CD (GitHub Actions)
-Once you push your changes to GitHub, GitHub Actions will: ✅ Train & test the model
-✅ Deploy the latest model version
+```
+### 5️⃣ Enable CI/CD (GitHub Actions)
+Once you push changes to GitHub, GitHub Actions will: 
+1. ✅ Train & test the model
+2. ✅ Deploy the latest model version
 
-Check your CI/CD workflow here:
+Check the CI/CD workflow here:
 
-bash
-Copy
-Edit
+```bash
 https://github.com/YOUR-USERNAME/ml_pipeline/actions
-6️⃣ Monitor Model Performance
+```
+### 6️⃣ Monitor Model Performance
 Start Prometheus monitoring:
 
-bash
-Copy
-Edit
+```bash
 python monitoring.py
+```
 Then open:
 
-arduino
-Copy
-Edit
+```code
 http://localhost:8000
+```
 to check model inference performance.
 
-📌 Deployment Options
-Option 1: Docker Deployment
+## 📌 Deployment Options
+
+### Option 1: Docker Deployment
+
 Run the model inside a Docker container:
 
-bash
-Copy
-Edit
+```bash
 docker build -t ml-api .
 docker run -p 5000:5000 ml-api
-Option 2: Kubernetes Deployment
+```
+
+### Option 2: Kubernetes Deployment
 Deploy using Kubernetes:
 
-bash
-Copy
-Edit
+```bash
 kubectl apply -f deployment/k8s-deployment.yaml
-📈 Future Improvements
-🚀 Deploy on AWS Lambda
-🔍 Implement Kafka for real-time processing
-📈 Enhance monitoring with Grafana
+```
+
+## 📈 Future Improvements
+
+#### 🚀 Deploy on AWS Lambda
+#### 🔍 Implement Kafka for real-time processing
+#### 📈 Enhance monitoring with Grafana
 
 
-
+---
 # ML Pipeline - Project Structure
 
 ```text
