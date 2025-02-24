@@ -7,11 +7,16 @@ name: ML Pipeline CI/CD
 on:
   push:
     branches:
-      - main
+      - main  # Run the pipeline when changes are pushed to the main branch
+  pull_request:
+    branches:
+      - main  # Run the pipeline on pull requests
 
 jobs:
-  train:
+  train_test:
+    name: Train & Test ML Model
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -26,10 +31,71 @@ jobs:
           pip install -r requirements.txt
 
       - name: Train Model
-        run: python train.py
+        run: |
+          python train.py
 
-      - name: Save Model Artifact
+      - name: Run Unit Tests
+        run: |
+          pytest test/test_pipeline.py
+
+      - name: Save Trained Model
         uses: actions/upload-artifact@v3
         with:
           name: trained-model
-          path: model/model.pkl
+          path: model/
+
+  docker_build:
+    name: Build & Push Docker Image
+    runs-on: ubuntu-latest
+    needs: train_test  # Run only after model training & tests pass
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: deployment/Dockerfile
+          push: true
+          tags: yourdockerhubusername/ml-api:latest  # Replace with your Docker Hub username
+
+  deploy_kubernetes:
+    name: Deploy to Kubernetes
+    runs-on: ubuntu-latest
+    needs: docker_build  # Deploy only after Docker image is built & pushed
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Kubernetes CLI
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Set Kubernetes Context
+        run: |
+          echo "${{ secrets.KUBECONFIG }}" | base64 --decode > kubeconfig.yaml
+          export KUBECONFIG=kubeconfig.yaml
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f k8s-deployment.yaml
+          kubectl rollout restart deployment/ml-api-deployment
+
+      - name: Verify Deployment
+        run: |
+          kubectl get pods
+          kubectl get services
+
