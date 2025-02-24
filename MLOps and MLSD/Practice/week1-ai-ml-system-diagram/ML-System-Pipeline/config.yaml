@@ -1,0 +1,18 @@
+# This file stores all the hyperparameters and settings for the ML pipeline. 
+# Keeping these values in a YAML file makes it easy to update configurations without modifying the code.
+dataset:
+  path: "data/iris.csv"  # Path to dataset
+
+model:
+  type: "RandomForest"  # Model type
+  hyperparameters:
+    n_estimators: 100    # Number of trees in Random Forest
+    max_depth: 3         # Max depth of each tree
+
+training:
+  test_size: 0.2         # Train-test split ratio
+  random_state: 42       # Seed for reproducibility
+
+logging:
+  level: "INFO"          # Logging level
+  file: "logs/training.log"  # Path to log file

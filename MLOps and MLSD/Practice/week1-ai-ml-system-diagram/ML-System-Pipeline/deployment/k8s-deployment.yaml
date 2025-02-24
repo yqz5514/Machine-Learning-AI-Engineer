@@ -1,0 +1,43 @@
+# This file allows you to deploy the ML model API inside a Kubernetes cluster.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-api-deployment
+spec:
+  replicas: 1  # Start with 1 container
+  selector:
+    matchLabels:
+      app: ml-api
+  template:
+    metadata:
+      labels:
+        app: ml-api
+    spec:
+      containers:
+        - name: ml-api-container
+          image: yourdockerhubusername/ml-api:latest  # Replace with your Docker image
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: "200m"  # Minimum CPU request
+            limits:
+              cpu: "500m"  # Max CPU before scaling up
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ml-api-service
+spec:
+  selector:
+    app: ml-api
+  ports:
+    - protocol: TCP
+      port: 80  # External port
+      targetPort: 5000  # Internal container port
+  type: LoadBalancer
+
+# Creates a Kubernetes deployment for the FastAPI model API.
+# Runs 2 replicas for high availability.
+# Exposes the API using a LoadBalancer, making it accessible externally.
+# Docker Image: Change "yourdockerhubusername/ml-api:latest" to your actual Docker image name.
