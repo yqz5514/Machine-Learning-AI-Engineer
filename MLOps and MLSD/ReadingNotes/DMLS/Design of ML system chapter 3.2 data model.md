@@ -1,4 +1,4 @@
-# 📌 Designing Machine Learning Systems - Chapter 3.3 Summary: Data Model
+# 📌 Designing Machine Learning Systems - Chapter 3.2 Summary: Data Model
 
 ## **📌 What is a Data Model?**
 A **data model** defines how data is **structured, stored, and retrieved**.
