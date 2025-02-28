@@ -156,4 +156,103 @@
     │   ├── LLM 相关问题（Prompt Engineering, RAG）
     │   ├── AI 生产落地问题（如何优化 AI 应用的延迟？）
 
+# 📌 Knowledge Tree: ML Systems (Designing Machine Learning Systems - Chapter 3)
+Machine Learning System - Data Engineering Fundamentals
+├── 1️⃣ Data Sources & Data Formats
+│   ├── User Input Data (Text, Images, Logs)
+│   ├── System-Generated Data (Model Predictions, Event Logs)
+│   ├── Internal Databases (Enterprise CRM, Inventory)
+│   ├── Third-Party Data (Paid, Open Source)
+│   ├── Structured Formats (JSON, CSV, Parquet)
+│   ├── Row-major vs. Column-major Storage
+│
+├── 2️⃣ Data Models & Storage
+│   ├── Relational Databases (SQL, PostgreSQL, MySQL)
+│   ├── Document Databases (NoSQL, MongoDB)
+│   ├── Graph Databases (Neo4j, Amazon Neptune)
+│   ├── OLTP (Transactional) vs. OLAP (Analytical)
+│
+├── 3️⃣ Data Storage Engines & Processing
+│   ├── Data Warehouses (BigQuery, Snowflake)
+│   ├── Data Lakes (S3, HDFS)
+│   ├── Hybrid Storage: Lakehouses (Databricks, Apache Iceberg)
+│   ├── ETL (Extract, Transform, Load)
+│   ├── ELT (Extract, Load, Transform)
+│   ├── Batch Processing (Apache Spark, MapReduce)
+│   ├── Stream Processing (Apache Flink, Kafka Streams)
+│
+├── 4️⃣ Dataflow & Communication
+│   ├── Database-Based Communication (Shared Databases)
+│   ├── API-Based Services (REST, RPC)
+│   ├── Event-Driven Messaging (Kafka, Pub/Sub)
+│
+├── 5️⃣ Data Curation & Deduplication
+│   ├── Data Labeling & Feature Engineering
+│   ├── Removing Duplicate Data (MinHash, Bloom Filters)
+│   ├── Data Quality Control (Consistency, Relevance, Compliance)
+│
+├── 6️⃣ Data Transformation & Feature Engineering
+│   ├── Feature Extraction (Scaling, Normalization)
+│   ├── Data Pruning (Selecting Most Valuable Features)
+│   ├── Data Augmentation for Robustness
+│
+└── 7️⃣ Data Computation & ML Pipelines
+    ├── Optimizing SQL Queries for ML Pipelines
+    ├── Distributed Data Processing (Dask, Spark)
+    ├── Data Partitioning Strategies (Sharding, Indexing)
+    ├── Model Training & Serving Pipelines
+    ├── ML System Monitoring & Data Drift Detection
+
+📌 **Key Insight**: **ML systems require structured, high-quality datasets, efficient batch processing, and robust data storage models to train high-performance models.**
+
+# 📌 Knowledge Tree: AI Engineering (AI Engineering - Chapter 8)
+AI Engineering - Dataset Engineering
+├── 1️⃣ Data Collection & Sources
+│   ├── First-Party Data (User Interaction, Logs)
+│   ├── Public & Proprietary Data (Licensed Datasets)
+│   ├── AI-Generated Synthetic Data
+│
+├── 2️⃣ Data Curation & Preprocessing
+│   ├── Defining Desired AI Model Behaviors
+│   ├── Data Cleaning (Removing Bias, Ensuring Consistency)
+│   ├── Filtering Low-Quality Data (Data Pruning)
+│   ├── Formatting Data (Tokenization, Instruction-Response Pairs)
+│
+├── 3️⃣ Data Augmentation & Synthesis
+│   ├── Traditional Data Augmentation (Image Rotation, Text Paraphrasing)
+│   ├── AI-Synthesized Data (Self-Supervised Learning)
+│   ├── Preference Data (Human Preference Fine-Tuning)
+│   ├── Chain-of-Thought (CoT) Annotation for Reasoning
+│
+├── 4️⃣ Data Storage & Processing Pipelines
+│   ├── Data Lakes (S3, Delta Lake)
+│   ├── Real-Time Data Warehouses (BigQuery, Snowflake)
+│   ├── Event-Driven Storage (Kafka, Kinesis)
+│   ├── ELT Pipelines (Faster Data Loading, Flexible Queries)
+│
+├── 5️⃣ AI-Specific Data Engineering
+│   ├── Instruction Fine-Tuning Data (GPT, Llama)
+│   ├── Self-Supervised Pretraining Data
+│   ├── RLHF (Reinforcement Learning from Human Feedback)
+│   ├── AI-Assisted Annotation (LLM-Powered Labeling)
+│
+├── 6️⃣ Data Pipelines for AI Applications
+│   ├── API-Based Data Retrieval (REST, GraphQL)
+│   ├── Streaming Data Processing (Apache Flink, Spark Streaming)
+│   ├── Microservice Architectures for AI Deployment
+│
+├── 7️⃣ Scaling AI Data Pipelines
+│   ├── Model Distillation (Transferring Knowledge from Large Models)
+│   ├── Reducing Model Serving Costs with Quantization
+│   ├── Optimizing Data Fetching for Low-Latency AI Applications
+│
+└── 8️⃣ Future of AI Data Engineering
+    ├── Real-Time Model Updating via AI-Synthesized Data
+    ├── AI-Powered Data Curation & Filtering
+    ├── Ethical AI & Compliance in Data Processing
+    ├── Addressing Model Collapse in AI Training
+
+📌 **Key Insight**: **AI Engineering focuses on scalable, real-time data pipelines, leveraging AI-synthesized data and self-supervised learning to create adaptable AI models.**
+
+
 ```
