@@ -14,6 +14,11 @@ From a data engineering perspective, **AI Engineering (AIE) and ML Engineering (
 
 📌 **Key Takeaway**: **Both model and data improvements are necessary for meaningful AI progress**.
 
+#### More challenging data annotation
+- Training data should exhibit the behaviors you want your model to learn. Acquiring high-quality data annotations is always challenging, but it’s even more challenging if you want to teach models complex behaviors such as **chain-of-thought (CoT)**(chapter 5) reasoning and **tool use**.
+- CoT: CoT prompting nudges the model to work through a problem step-by-step before producing the final answer. To teach a model to generate step-by-step responses, its training data should include CoT responses. “Scaling Instruction-Finetuned Language Models” (Chun et al., 2024) shows that incorporating step-by-step responses in the finetuning data greatly enhances the performance of models of various sizes on CoT tasks, with accuracy nearly doubling for certain tasks.
+- Tool use: Given the vast amount of knowledge a model acquires during pre- training, many models might intuitively know how to use certain tools. However, a model’s tool use ability can be improved by
+showing it tool use examples. It’s common to use domain experts to create tool use data, where each prompt is a task that requires tool use, and its response is the actions needed to perform that task. However, what’s efficient for humans might not be efficient for AI, and vice versa. As a result, **human annotations might not be ideal for AI agents**.
 ---
 
 ## **📌 1. Data Curation**  
