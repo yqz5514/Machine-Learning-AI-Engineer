@@ -1,0 +1,9 @@
+{
+    "user_id": "integer",
+    "video_id": "integer",
+    "watch_time": "integer",
+    "liked": "boolean",
+    "shared": "boolean",
+    "skipped": "boolean",
+    "timestamp": "string"
+}
