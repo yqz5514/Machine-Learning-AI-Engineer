@@ -78,7 +78,8 @@ Two major **rule-based** methods:
 ---
 
 ## **📌 AI-Powered Data Synthesis**
-Modern AI models enable **more advanced and realistic synthetic data generation**.
+- Modern AI models enable **more advanced and realistic synthetic data generation**.
+- Data synthesis for **post-training** is also more common because post-training data, including both instruction data and preference data, generally demands the most effort to produce. Using AI to pick the better response among several responses is more straightforward—much of it was already covered in Chapter 3.
 
 ### **1️⃣ AI-Simulated Environments**
 - AI can **simulate human behaviors** (e.g., gameplay, negotiations).
@@ -95,6 +96,8 @@ Modern AI models enable **more advanced and realistic synthetic data generation*
 3. Creating test cases and fixing errors.
 4. Filtering low-quality responses.
 
+
+
 ---
 ### **Instruction data synthesis**
 During instruction finetuning, each example includes an instruction and a response. AI can be used to synthesize the instructions, the responses, or both. 
@@ -103,7 +106,8 @@ During instruction finetuning, each example includes an instruction and a respon
 - For response generation, you can generate one or more responses per instruction。
 
 ### **📌 Data Verification: Ensuring Synthetic Data Quality**
-Since **model performance depends on data quality**, verifying synthetic data is **crucial**.
+- Since **model performance depends on data quality**, verifying synthetic data is **crucial**.
+- Recall the concept of evaluation-driven development from Chapter 4, where companies are more likely to create applications they can evaluate.
 
 #### **1️⃣ Functional Correctness**
 - If synthetic data involves **code**, it can be **tested via execution**.
