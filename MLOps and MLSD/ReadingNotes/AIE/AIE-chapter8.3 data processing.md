@@ -34,8 +34,8 @@ Before processing data, **inspect and explore** it to assess its **quality** and
 ---
 
 ## **📌 2. Deduplicate Data**
-Duplicate data can **bias models, skew distributions, and contaminate test sets**.
-
+- Duplicate data can **bias models, skew distributions, and contaminate test sets**.
+- The task of deduplication can leverage the same techniques used for similarity measurements (discussed in Chapter 3).
 ### **1️⃣ Types of Duplications**
 | **Duplication Type** | **Example** |
 |---------------------|------------|
@@ -46,7 +46,7 @@ Duplicate data can **bias models, skew distributions, and contaminate test sets*
 ### **2️⃣ Deduplication Methods**
 | **Method** | **Description** |
 |-----------|----------------|
-| **Pairwise Comparison** | Compares each example using exact/fuzzy matching. Computationally expensive for large datasets. |
+| **Pairwise Comparison**(chapter 3) | Compares each example using exact/fuzzy matching. Computationally expensive for large datasets. |
 | **Hashing (MinHash, Bloom Filter)** | Hashes examples into buckets to compare only within buckets. |
 | **Dimensionality Reduction** | Reduces data dimensions for efficient duplicate detection. |
 
@@ -57,7 +57,7 @@ Duplicate data can **bias models, skew distributions, and contaminate test sets*
 ---
 
 ## **📌 3. Clean and Filter Data**
-Data must be **cleaned** to ensure **model safety, compliance, and performance**.
+Data must be **cleaned** to ensure **model safety, compliance, and performance**.(chapter 4)
 
 ### **1️⃣ Key Cleaning Steps**
 - **Remove formatting artifacts** (e.g., HTML tags, special tokens).
@@ -75,7 +75,7 @@ Data must be **cleaned** to ensure **model safety, compliance, and performance**
 
 ## **📌 4. Format Data**
 Once cleaned, data must be **formatted correctly** to avoid errors in model training.
-
+(chapter5)
 ### **1️⃣ Common Formatting Issues**
 - **Tokenization mismatches** → Different models use different tokenizers.
 - **Chat template errors** → Using the wrong format for dialogue-based models.
