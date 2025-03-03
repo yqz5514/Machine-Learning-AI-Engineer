@@ -79,6 +79,53 @@
 ├── requirements.txt                    # Python dependencies
 ├── README.md                           # Project documentation
 
-
+```
 
 ```
+📂 End-to-End ML System Architecture
+│
+├── 1️⃣ Data Ingestion (Streaming + Batch)
+│   ├── Kafka Producer (User interactions)
+│   ├── Database Ingestion (PostgreSQL, MongoDB)
+│   ├── Third-Party API (External Metadata)
+│
+├── 2️⃣ Data Storage Layer
+│   ├── PostgreSQL (Structured Data: User interactions, metadata)
+│   ├── MongoDB (Unstructured Data: User preferences)
+│   ├── Parquet Data Lakehouse (Scalable storage for embeddings)
+│
+├── 3️⃣ Data Processing
+│   ├── Stream Processing (Kafka Consumer updates Redis)
+│   ├── Batch Processing (ETL Pipeline, Apache Spark)
+│   ├── Feature Engineering (User & Video Features)
+│   ├── Embedding Computation (Vector Search with Faiss)
+│
+├── 4️⃣ Model Training & Management
+│   ├── Collaborative Filtering (ALS, SVD)
+│   ├── Content-Based Filtering (TF-IDF, Word2Vec)
+│   ├── Hybrid Model (CF + CBF + LightGBM for Ranking)
+│   ├── MLflow (Model versioning & tracking)
+│
+├── 5️⃣ Model Deployment & Serving
+│   ├── FastAPI (Recommendation API)
+│   ├── Redis Cache (Low-latency retrieval)
+│   ├── Faiss Index (Efficient similarity search)
+│   ├── Ranking Layer (CTR optimization, LightGBM)
+│
+├── 6️⃣ Monitoring & Feedback Loop
+│   ├── Prometheus & Grafana (System & model performance monitoring)
+│   ├── Feedback Loop (Retrains models based on new interactions)
+│   ├── CI/CD Pipeline (Automates training, testing, deployment)
+│
+└── 7️⃣ Infrastructure & Scaling
+    ├── Docker + Kubernetes (Containerized ML system)
+    ├── Horizontal Pod Autoscaler (Auto-scales based on load)
+    ├── Terraform (Infra-as-Code for AWS/GCP deployment)
+
+```
+
+- Data ingestion (Kafka, PostgreSQL, MongoDB)
+- Data processing (Spark, Feature Engineering, Embeddings)
+- Model training (CF, CBF, Hybrid, Ranking)
+- Model deployment (FastAPI, Redis, Faiss)
+- Monitoring & scaling (Prometheus, Grafana, Kubernetes, Terraform)
