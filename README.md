@@ -47,7 +47,7 @@ This repository contains my structured learning journey, covering **Machine Lear
   - Sorting, Searching, Graphs, Dynamic Programming
   - Hashing, Trees, Linked Lists, Brute Force & Optimized Techniques
 
-📝 **LeetCode Notes & Solutions:** [📂 Algorithms Folder](https://github.com/yqz5514/Machine-Learning-AI-Engineer/tree/main/Algorithm%20and%20Data%20Structure)  
+📝 **LeetCode Notes & Solutions(Mostly on Notion, will update here later):** [📂 Algorithms Folder](https://github.com/yqz5514/Machine-Learning-AI-Engineer/tree/main/Algorithm%20and%20Data%20Structure)  
 
 ---
 
