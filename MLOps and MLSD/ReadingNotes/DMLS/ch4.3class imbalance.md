@@ -179,4 +179,4 @@ The loss caused by instance x of class i will become as follows, with Loss(x, j)
 📌 **Example**:  
 - In a **resume screening system**, if **98% of applicants are rejected**, using **class-balanced loss** ensures that the model learns more from the **hired candidates** instead of ignoring them.
 
----
+
