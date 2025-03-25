@@ -40,7 +40,7 @@ This repository contains my structured learning journey, covering **Machine Lear
 
 ---
 
-### **3️⃣ Algorithms & Data Structures 🧠**
+### **3️⃣ Algorithms & Data Structures (Saved in Notion, will move to here later) 🧠**
 - 📖 Strengthening **problem-solving skills for AI/ML engineering roles**.
 - 🔢 Practicing **LeetCode problems & algorithm patterns**.
 - ✅ **Key Topics:**
