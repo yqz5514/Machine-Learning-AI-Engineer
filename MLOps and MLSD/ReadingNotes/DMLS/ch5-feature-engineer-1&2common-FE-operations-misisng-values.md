@@ -95,10 +95,4 @@ Missing values are **ubiquitous in real-world data**. But not all missing values
 
 ---
 
-🚀 **Stay tuned for the rest of Chapter 5**, covering:
-- Feature scaling
-- Discretization
-- Categorical encoding
-- Cross features
-- Positional features
 
