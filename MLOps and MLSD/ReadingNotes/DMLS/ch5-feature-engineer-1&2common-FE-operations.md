@@ -94,5 +94,110 @@ Missing values are **ubiquitous in real-world data**. But not all missing values
 3️⃣ **Imputation and deletion come with trade-offs**, and the right choice depends on the data distribution and model requirements.  
 
 ---
+# 📌 Designing Machine Learning Systems - Chapter 5.2 (b): Feature Engineering – Scaling
+
+## 📌 Why Feature Scaling Matters
+
+- **Feature scaling** ensures input features are on similar ranges.
+- Especially important for:
+  - **Distance-based models** (e.g., k-NN, SVM).
+  - **Gradient-based models** (e.g., logistic regression, gradient boosting).
+- **Neglecting to scale** can result in:
+  - Gibberish predictions.
+  - Slower or unstable convergence.
+  - Models being dominated by features with larger ranges.
+
+📌 **Key Insight**: Scaling is **simple but critical**—especially in traditional ML pipelines.
+
+---
+
+## 📌 Scaling Techniques
+
+### **1️⃣ Min-Max Scaling (Normalization)**
+
+- **Rescales values to a specific range**, commonly \([0, 1]\) or \([-1, 1]\).
+
+#### **Formula**:
+For range \([0, 1]\):
+\[
+x' = \frac{x - \min(x)}{\max(x) - \min(x)}
+\]
+
+For range \([a, b]\) (e.g., \([-1, 1]\)):
+\[
+x' = a + \frac{(x - \min(x))(b - a)}{\max(x) - \min(x)}
+\]
+
+📌 **Tip**: \([-1, 1]\) often performs better empirically than \([0, 1]\).
+
+---
+
+### **2️⃣ Standardization (Z-score Normalization)**
+
+- Use when data is **approximately normally distributed** or when you **don’t want to assume bounds**.
+
+#### **Formula**:
+\[
+x' = \frac{x - \mu}{\sigma}
+\]
+- Where:
+  - \(\mu\) is the **mean** of the feature.
+  - \(\sigma\) is the **standard deviation**.
+
+📌 **Benefit**: Results in features with **mean = 0** and **std = 1**, which can improve performance in models that assume normality.
+
+---
+
+### **3️⃣ Log Transformation**
+
+- Helps with **skewed distributions** (e.g., income, counts, durations).
+- **Transforms data** by applying:
+  \[
+  x' = \log(x + 1)
+  \]
+  (adding 1 avoids \(\log(0)\) issues).
+
+📌 **Use Cases**:
+- Works well for **positive-only features**.
+- Common in domains like **finance, health, fraud detection**.
+
+📌 **Caution**:
+- Doesn’t work for all features.
+- Can affect **interpretability and downstream analysis**.
+
+---
+
+## 📌 Additional Considerations
+
+### **1️⃣ Scaling and Data Leakage**
+- **Scaling uses global statistics (min, max, mean, std)** from training data.
+- **DO NOT** use test data to compute scaling parameters—this leads to **data leakage**.
+- During inference, **reuse training stats** to transform new samples.
+
+### **2️⃣ Scaling Drift**
+- **If new incoming data distribution shifts**, original stats become stale.
+- **Retrain or update scaling parameters periodically** to maintain performance.
+
+---
+
+## ✅ Summary: When and How to Scale Features
+
+| **Technique** | **When to Use** | **Pros** | **Cons** |
+|---------------|----------------|----------|----------|
+| Min-Max Scaling | When feature bounds are known and fixed. | Simple, interpretable | Sensitive to outliers |
+| Standardization | When features follow (or assumed to follow) a normal distribution. | Robust, widely supported | Affected by outliers |
+| Log Transformation | When data is skewed (e.g., exponential). | Reduces skewness, improves symmetry | Only for positive values, not always effective |
+
+📌 **Key Takeaway**: Always evaluate scaling decisions via experiments—scaling may be simple, but its impact on model performance is significant.
+
+---
+
+## 📌 Final Thoughts
+
+1️⃣ **Scaling is essential for gradient-based and distance-based models**—never skip it in traditional ML.  
+2️⃣ **Standardization and min-max scaling are go-to choices**, depending on your data shape.  
+3️⃣ **Be aware of data leakage and drift when applying scaling in production pipelines.**
+
+---
 
 
