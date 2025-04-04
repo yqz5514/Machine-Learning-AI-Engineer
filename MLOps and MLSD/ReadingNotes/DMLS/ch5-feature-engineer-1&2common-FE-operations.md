@@ -285,3 +285,103 @@ To reduce feature complexity or align with **real-world semantics** (e.g., age g
 
 ---
 
+# 📌 Designing Machine Learning Systems - Chapter 5.2 (d): Encoding Categorical Features
+
+## 📌 Why Encoding Categorical Features Matters
+
+- **Categorical features** must be transformed into **numerical representations** to be used in ML models.
+- Many beginners assume categories are **static**, but in production, **categories evolve over time**:
+  - New product brands, users, IPs, restaurants, domains, etc. appear frequently.
+  - Models must **generalize to unseen categories** or risk failing in production.
+
+📌 **Key Insight**: A robust encoding strategy must handle both **known** and **new/unseen** categories.
+
+---
+
+## 📌 Common Pitfalls in Categorical Encoding
+
+### **1️⃣ Static Encoding**
+- Assigning **each unique category a unique ID** (e.g., Brand A → 0, Brand B → 1, …).
+- **Fails in production** when:
+  - New categories appear that the model hasn’t seen.
+  - Unseen categories cause **model crashes or degraded performance**.
+
+### **Real-World Example: Amazon**
+- Over 2 million brands exist.
+- You encode brands from `0` to `1,999,999`, but when a **new brand appears**, the model fails.
+- Fix: Add an **`UNKNOWN` category** to catch all unseen brands.
+
+---
+
+## 📌 Problems with the UNKNOWN Category
+
+- If `UNKNOWN` is **not seen during training**, the model won’t learn how to treat it.
+- Sellers complain their **new products don’t get recommended**.
+- You update the strategy:
+  - Encode **top 99% most common brands**.
+  - Encode **bottom 1% + all unseen brands** as `UNKNOWN`.
+
+📌 **Still Not Enough**:
+- New brands (some important) are lumped together as "UNKNOWN".
+- Model treats **popular new brands** like **irrelevant or spammy ones**.
+
+---
+
+## 📌 Generalization Issues with Static Binning
+
+- The issue is **not unique to Amazon**:
+  - Spam detection: new users, new websites.
+  - E-commerce: new product categories.
+  - Any feature involving dynamic entities (e.g., IPs, accounts, URLs).
+
+📌 **Challenge**: How do you meaningfully represent **new categories** without re-training your model?
+
+---
+
+## 📌 The Hashing Trick
+
+- **Solution**: Use a **hash function** to encode categories into fixed-size buckets.
+- Popularized by **Vowpal Wabbit**, also used in **scikit-learn**, **TensorFlow**, **Gensim**.
+
+### **How it works**:
+1. Apply a hash function to the category name.
+2. Use the **modulo** operation to map the hash to a fixed integer range.
+3. All categories (even new ones) are **guaranteed to be mapped** to a numeric index.
+
+📌 **Example**:
+- Choose a hash space of `2^18 = 262,144`.
+- Any new or unseen category gets mapped to an index in `[0, 262,143]`.
+
+---
+
+## 📌 Pros and Cons of Hashing
+
+| **Pros** | **Cons** |
+|----------|----------|
+| Handles unseen categories gracefully. | **Hash collisions**: Two categories may map to the same index. |
+| Avoids model crashes in production. | Loss of interpretability. |
+| Works well in online learning. | Collisions can slightly degrade performance. |
+
+📌 **Good News**:
+- Research (e.g., Booking.com) shows that even with **50% collisions**, the **performance drop is < 0.5%**.
+- Can use **locality-sensitive hashing** if similarity preservation is important.
+
+---
+
+## 📌 Best Practices
+
+- Use **hashing** for features with:
+  - A **large number of unique categories**.
+  - **High turnover rate** (e.g., accounts, URLs).
+- Keep hash space **large enough** to minimize collisions.
+- Monitor for **drift in category distribution** over time.
+
+---
+
+## 📌 Final Takeaways (3-Sentence Summary)
+
+1️⃣ **Production ML systems must handle unseen categorical values**, which static encodings cannot reliably support.  
+2️⃣ The **hashing trick** offers a scalable solution by mapping all categories (even new ones) into a fixed feature space.  
+3️⃣ Though it introduces some collisions, hashing performs well in practice and is widely used in modern ML pipelines.
+
+---
