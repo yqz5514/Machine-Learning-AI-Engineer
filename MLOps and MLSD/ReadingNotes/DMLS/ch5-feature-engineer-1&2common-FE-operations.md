@@ -200,4 +200,88 @@ x' = \frac{x - \mu}{\sigma}
 
 ---
 
+# 📌 Designing Machine Learning Systems - Chapter 5.2 (c): Discretization
+
+### **This technique is included in this book for completeness, though in practice, I’ve rarely found discretization to help.**
+
+## 📌 What is Discretization?
+
+- **Discretization** (also called **quantization** or **binning**) is the process of converting a **continuous variable into discrete buckets**.
+- It's typically used to **simplify learning**, especially when:
+  - You have **limited training data**.
+  - The model struggles to generalize over **small numeric differences**.
+
+📌 **Example**:  
+If the model has seen incomes like `$150,000`, `$50,000`, `$100,000` during training, and sees `$9,000.50` during inference, it might fail to understand that `$9,000.50` is closer to `$10,000` than `$150,000`.
+
+---
+
+## 📌 Why Use Discretization?
+
+- Models **don’t inherently understand numeric similarity** (e.g., $9,000.50 ≠ $10,000 unless encoded or transformed).
+- Grouping values into **coarse categories** reduces the model's burden of learning from infinitely many values.
+- More useful when **training data is small or sparse**.
+
+📌 **Income Grouping Example**:
+| Bucket | Rule |
+|--------|------|
+| Low Income | < $35,000/year |
+| Middle Income | $35,000–$100,000/year |
+| High Income | > $100,000/year |
+
+---
+
+## 📌 Discretization Can Also Apply to Discrete Features
+
+- Although designed for continuous features, **discretization can also apply to discrete features**.
+- **Example – Age Buckets**:
+  - < 18  
+  - 18–22  
+  - 22–30  
+  - 30–40  
+  - 40–65  
+  - > 65  
+
+📌 **Why?**  
+To reduce feature complexity or align with **real-world semantics** (e.g., age groups in demographic models).
+
+---
+
+## ⚠️ Drawbacks of Discretization
+
+1. **Information Loss at Boundaries**:
+   - `$34,999` and `$35,000` end up in different buckets—even though they are only $1 apart.
+   - Conversely, `$35,000` and `$100,000` may be in the same bucket—though far apart.
+
+2. **Choosing Cutoffs is Hard**:
+   - Requires **manual design** or domain expertise.
+   - May introduce **bias** or reduce model granularity.
+   - Use **histograms** and **quantiles** to guide boundaries.
+
+3. **Discontinuity**:
+   - Model sees **sudden jumps in input values**, which may hurt smooth decision boundaries.
+
+---
+
+## ✅ Best Practices
+
+- **Use with caution**—only if:
+  - The model is simple.
+  - Training data is small.
+  - Interpretability is prioritized.
+- **Visualize distributions** to inform cutoff choices.
+- Consider **automated binning strategies**:
+  - Equal-width bins.
+  - Equal-frequency bins.
+  - Decision-tree–based binning.
+
+---
+
+## 📌 Final Takeaways (3-Sentence Summary)
+
+1️⃣ **Discretization converts continuous features into buckets to simplify model learning**, especially in low-data regimes.  
+2️⃣ **Though useful, it introduces discontinuities and may obscure important variations in input values**.  
+3️⃣ **Use visualization, quantiles, or domain knowledge to set meaningful boundaries—and apply it thoughtfully**.
+
+---
 
