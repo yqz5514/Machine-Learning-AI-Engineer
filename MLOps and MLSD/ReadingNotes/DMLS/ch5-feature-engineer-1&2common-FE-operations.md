@@ -385,3 +385,38 @@ To reduce feature complexity or align with **real-world semantics** (e.g., age g
 3️⃣ Though it introduces some collisions, hashing performs well in practice and is widely used in modern ML pipelines.
 
 ---
+## 📌 Interview Questions & Answers: Encoding Categorical Features
+
+### ❓ Q1: What problems might occur when using static category encodings in a production ML system?
+
+✅ **Answer**:
+- Static encodings assign each category a unique number (e.g., Brand A → 0, Brand B → 1), which assumes that the set of categories is fixed.
+- In production, **new categories appear frequently** (e.g., new users, brands, IPs), which can cause:
+  - **Model crashes** if the encoding can’t handle unknown values.
+  - **Poor performance** if the model doesn’t know how to deal with unseen categories like `UNKNOWN`.
+- Even if you add an `UNKNOWN` token, the model may perform poorly if it didn’t see that token during training.
+
+---
+
+### ❓ Q2: What is the hashing trick and how does it help encode high-cardinality categorical features?
+
+✅ **Answer**:
+- The **hashing trick** maps each category to an index in a fixed-size hash space using a hash function.
+- It avoids the need to store a vocabulary of all categories and can **gracefully handle new/unseen categories** at inference time.
+- Example: With a hash space of \(2^{18} = 262,144\), all values—including new ones—get mapped to indices within that range.
+- It introduces **collisions**, but studies show that even with 50% collision, the **performance degradation is minimal** (<0.5%).
+
+---
+
+### ❓ Q3: What are some drawbacks of the hashing trick compared to traditional category encoding?
+
+✅ **Answer**:
+- **Hash collisions**: Different categories may end up sharing the same index, which could slightly degrade performance.
+- **Loss of interpretability**: You can’t recover the original category from the hashed value.
+- **No frequency awareness**: It doesn’t prioritize frequent categories over rare ones.
+- **Requires tuning**: The hash space size must be large enough to reduce collision, and choosing a proper hash function matters.
+
+📌 **Follow-up**: Ask how to mitigate collisions (e.g., increase hash space size, use better hash functions like locality-sensitive hashing).
+
+---
+
