@@ -491,6 +491,109 @@ Marriage = Single, Children = 2 → Marriage_and_children = Single_2
 3️⃣ However, it comes with risks of **feature explosion and overfitting**, so it must be applied judiciously.
 
 ---
+# 📌 Designing Machine Learning Systems - Chapter 5.2 (f): Discrete and Continuous Positional Embeddings
 
+## 📌 What Are Positional Embeddings?
+
+- **Positional embeddings** help models understand the **order or position of input data**, especially when models like **transformers** process tokens in **parallel** (non-sequentially).
+- Introduced in the paper **“Attention Is All You Need” (Vaswani et al., 2017)**.
+- Essential in tasks like **language modeling**, where predicting the next token depends on the position of previous tokens.
+
+📌 **Use Case Example**:  
+> Predicting the next word from the sequence:  
+> “Sometimes all I really want to do is [MASK]”
+
+---
+
+## 📌 Why Are Positional Embeddings Needed?
+
+- **RNNs and LSTMs** process data sequentially → **order is implicitly encoded**.
+- **Transformers** process input tokens in **parallel**, so **word position must be encoded explicitly**.
+
+> Example:  
+> “A dog bites a child” ≠ “A child bites a dog”  
+> → Positional awareness is crucial.
+
+---
+
+## 📌 Types of Positional Embeddings
+
+### **1️⃣ Learned Positional Embeddings (Discrete)**
+- Similar to word embeddings:
+  - Each position gets its own **embedding vector**.
+  - Stored in a **position embedding matrix** (e.g., for sequence length 8 → 8 column vectors).
+- Can be **added to token embeddings** (e.g., embedding of “food” at position 0 = embedding(“food”) + embedding(0)).
+- **Learned jointly** with model weights → **optimized during training**.
+- Used in models like **BERT** (as of August 2021).
+
+📌 **Note**: Positional embeddings and token embeddings should have **the same dimensionality** for vector addition.
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/6727bf0f-ada4-4836-be92-b65c53275159" />
+
+
+---
+
+### **2️⃣ Fixed Positional Embeddings (Fourier Features)**
+
+- Uses **predefined mathematical functions** instead of learned weights.
+- Common technique: **sine and cosine** encoding.
+  - Even indices: sine.
+  - Odd indices: cosine.
+
+#### Formula Example (from Transformer paper):
+\[
+PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d}}\right),\quad
+PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)
+\]
+
+- These embeddings remain **constant during training**.
+- Known as a special case of **Fourier Features**.
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/668e319d-99fa-4412-8d6a-3d843a066647" />
+
+
+📌 **Benefit**:
+- Avoids learning position weights.
+- Maintains generalization across sequence lengths.
+
+---
+
+## 📌 Continuous Positional Embeddings
+
+- Useful for **continuous spatial inputs** (e.g., 3D coordinates).
+- Example: Representing a **teapot surface** using continuous 3D coordinates.
+- Cannot index into a discrete embedding matrix for every real-valued position.
+- Use **Fourier feature–based embeddings** with sine and cosine functions.
+
+#### Generalized Fourier Feature Encoding:
+\[
+\gamma(v) = [\sin(2^0 \pi v), \cos(2^0 \pi v), \sin(2^1 \pi v), \cos(2^1 \pi v), \dots]
+\]
+
+<img width="468" alt="image" src="https://github.com/user-attachments/assets/b8378e49-4b05-4cfc-9ff7-50665f6723e1" />
+
+
+📌 Reference:
+- **Tancik et al., 2020**: *“Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains”*
+
+---
+
+## ✅ Summary Table
+
+| Type | Discrete or Continuous? | Learnable? | Example Use Case |
+|------|--------------------------|------------|------------------|
+| Learned Positional Embedding | Discrete | ✅ Yes | BERT, GPT |
+| Fixed Positional Embedding | Discrete | ❌ No | Transformer (original paper) |
+| Fourier Features | Continuous | ❌ No | 3D graphics, spatial modeling |
+
+---
+
+## 📌 Final Takeaways (3-Sentence Summary)
+
+1️⃣ **Positional embeddings encode order or spatial location information in models that process inputs in parallel, like transformers**.  
+2️⃣ **Learned embeddings** are flexible and task-specific, while **fixed embeddings** using sine/cosine are lightweight and generalizable.  
+3️⃣ For **continuous inputs**, **Fourier features** offer a way to encode positions without discretization and help models learn high-frequency patterns.
+
+---
 
 
